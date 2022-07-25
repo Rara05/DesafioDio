@@ -18,15 +18,15 @@ public class Dev {
     public void progredir(){
         Optional<Conteudo> conteudo = this.conteudoIncrito.stream().findFirst();
         if (conteudo.isPresent()){
-            this.conteudoIncrito.add(conteudo.get());
+            this.conteudosConcluidos.add(conteudo.get());
             this.conteudoIncrito.remove(conteudo.get());
         }else {
-            System.out.println("Você não está matriculado em nenhum conteúdo");
+            System.err.println("Você não está matriculado em nenhum conteúdo");
         }
     }
 
-    public void calcularTotalXP(){
-        this.conteudosConcluidos
+    public double calcularTotalXP(){
+        return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo :: calcularXP)
                 .sum();
